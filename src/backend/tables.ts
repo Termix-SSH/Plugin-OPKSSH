@@ -6,7 +6,7 @@ import {
   refUser,
   text,
   varchar,
-} from "@termix/plugin-sdk/db";
+} from "@termix-ssh/plugin-sdk/db";
 
 /**
  * One cached certificate per user and host. Adopted from core's

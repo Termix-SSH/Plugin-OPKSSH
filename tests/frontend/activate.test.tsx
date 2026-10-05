@@ -3,16 +3,16 @@ import { act, fireEvent, render, screen } from "@testing-library/react";
 import {
   renderWithApp,
   type RenderedPluginApp,
-} from "@termix/plugin-sdk/testing";
-import type { PluginManifest } from "@termix/plugin-sdk/manifest";
+} from "@termix-ssh/plugin-sdk/testing";
+import type { PluginManifest } from "@termix-ssh/plugin-sdk/manifest";
 import * as plugin from "../../src/frontend/index";
 import { OpksshOverlay } from "../../src/frontend/OpksshOverlay";
 import { redirectUri } from "../../src/frontend/RedirectUriSetting";
 import manifestJson from "../../manifest.json";
 import locales from "../../locales/en.json";
 
-vi.mock("@termix/plugin-sdk/frontend", async (importOriginal) => ({
-  ...(await importOriginal<typeof import("@termix/plugin-sdk/frontend")>()),
+vi.mock("@termix-ssh/plugin-sdk/frontend", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@termix-ssh/plugin-sdk/frontend")>()),
   useTranslation: () => ({ t: (key: string) => key }),
 }));
 

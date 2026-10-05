@@ -1,5 +1,5 @@
 import { and, eq } from "drizzle-orm";
-import type { PluginContext } from "@termix/plugin-sdk/backend";
+import type { PluginContext } from "@termix-ssh/plugin-sdk/backend";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // ctx.db.define hands the table back untyped and the drizzle handle is the

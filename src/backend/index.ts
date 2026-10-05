@@ -1,5 +1,5 @@
 import type { Router } from "express";
-import type { PluginContext } from "@termix/plugin-sdk/backend";
+import type { PluginContext } from "@termix-ssh/plugin-sdk/backend";
 import { tokens as tokensTable } from "./tables.js";
 import { createTokenStore } from "./token-store.js";
 import { createAuthSessions } from "./auth-session.js";

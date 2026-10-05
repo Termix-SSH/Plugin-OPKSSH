@@ -1,5 +1,5 @@
 import path from "node:path";
-import type { PluginBinarySpec } from "@termix/plugin-sdk/backend";
+import type { PluginBinarySpec } from "@termix-ssh/plugin-sdk/backend";
 
 export const DEFAULT_VERSION = "v0.16.0";
 

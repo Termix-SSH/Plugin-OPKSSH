@@ -1,10 +1,10 @@
 import { Shield, ExternalLink, Loader2, AlertCircle } from "lucide-react";
-import { useTranslation } from "@termix/plugin-sdk/frontend";
+import { useTranslation } from "@termix-ssh/plugin-sdk/frontend";
 import {
   PanePrompt,
   PROMPT_BUTTON,
   PROMPT_PRIMARY_BUTTON,
-} from "@termix/plugin-sdk/ui";
+} from "@termix-ssh/plugin-sdk/ui";
 
 export type SignInStage =
   "chooser" | "waiting" | "authenticating" | "completed" | "error";

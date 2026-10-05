@@ -3,7 +3,7 @@ import path from "node:path";
 import type {
   PluginContext,
   PluginProcessHandle,
-} from "@termix/plugin-sdk/backend";
+} from "@termix-ssh/plugin-sdk/backend";
 import {
   CONFIG_FILE,
   checkConfig,

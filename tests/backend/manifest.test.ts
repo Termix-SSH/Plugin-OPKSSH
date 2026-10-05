@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { validateManifest } from "@termix/plugin-sdk/manifest";
+import { validateManifest } from "@termix-ssh/plugin-sdk/manifest";
 import manifest from "../../manifest.json";
 
 describe("manifest", () => {

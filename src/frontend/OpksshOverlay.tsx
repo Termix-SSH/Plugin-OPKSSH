@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "@termix/plugin-sdk/frontend";
+import { useTranslation } from "@termix-ssh/plugin-sdk/frontend";
 import { OpksshDialog, type SignInStage } from "./OpksshDialog";
 
 /** What the ssh-terminal plugin hands a "terminal.overlay" component. */

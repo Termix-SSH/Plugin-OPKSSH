@@ -1,4 +1,4 @@
-import { useTranslation } from "@termix/plugin-sdk/frontend";
+import { useTranslation } from "@termix-ssh/plugin-sdk/frontend";
 
 const DOCS_URL = "https://docs.termix.site/features/authentication/opkssh";
 

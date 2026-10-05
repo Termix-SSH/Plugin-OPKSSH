@@ -2,8 +2,8 @@ import { toast } from "sonner";
 import {
   useTranslation,
   type SettingsComponentProps,
-} from "@termix/plugin-sdk/frontend";
-import { Button, Input, copyToClipboard } from "@termix/plugin-sdk/ui";
+} from "@termix-ssh/plugin-sdk/frontend";
+import { Button, Input, copyToClipboard } from "@termix-ssh/plugin-sdk/ui";
 
 const CALLBACK_PATH = "plugin-api/opkssh/callback";
 
