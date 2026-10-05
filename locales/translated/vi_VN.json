@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "URI chuyển hướng",
       "description": "Hãy đăng ký URL này như một URI chuyển hướng được cho phép với mọi nhà cung cấp danh tính trong cấu hình OPKSSH của bạn."
-    },
-    "legacyCallback": {
-      "label": "Sử dụng URI chuyển hướng cũ.",
-      "description": "Tiếp tục gửi /host/opkssh-callback, URI chuyển hướng được sử dụng trước phiên bản 2.9. Tắt chức năng này khi nhà cung cấp danh tính của bạn cho phép sử dụng URI mới."
     }
   },
   "hosts": {

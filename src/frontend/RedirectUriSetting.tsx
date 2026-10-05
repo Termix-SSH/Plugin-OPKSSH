@@ -6,22 +6,15 @@ import {
 import { Button, Input, copyToClipboard } from "@termix/plugin-sdk/ui";
 
 const CALLBACK_PATH = "plugin-api/opkssh/callback";
-const LEGACY_CALLBACK_PATH = "host/opkssh-callback";
 
 /** The public callback URI to register with the identity provider. */
-export function redirectUri(
-  legacy: boolean,
-  baseUri = document.baseURI,
-): string {
-  return new URL(
-    legacy ? LEGACY_CALLBACK_PATH : CALLBACK_PATH,
-    baseUri,
-  ).toString();
+export function redirectUri(baseUri = document.baseURI): string {
+  return new URL(CALLBACK_PATH, baseUri).toString();
 }
 
-export function RedirectUriSetting({ values }: SettingsComponentProps) {
+export function RedirectUriSetting(_props: SettingsComponentProps) {
   const { t } = useTranslation();
-  const uri = redirectUri(values.legacyCallback === true);
+  const uri = redirectUri();
 
   return (
     <div className="flex flex-col gap-2">

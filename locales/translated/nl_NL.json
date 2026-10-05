@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "Omleidings-URI",
       "description": "Registreer deze URL als een toegestane omleidings-URI bij elke identiteitsprovider in uw OPKSSH-configuratie."
-    },
-    "legacyCallback": {
-      "label": "Gebruik de oude omleidings-URI",
-      "description": "Blijf /host/opkssh-callback verzenden, de omleidings-URI die vóór versie 2.9 werd gebruikt. Schakel dit uit zodra uw identiteitsproviders de nieuwe URI toestaan."
     }
   },
   "hosts": {

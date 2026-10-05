@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "Uudelleenohjauksen URI",
       "description": "Rekisteröi tämä URL-osoite sallituksi uudelleenohjaus-URI:ksi jokaiselle OPKSSH-kokoonpanosi identiteetintarjoajalle."
-    },
-    "legacyCallback": {
-      "label": "Käytä vanhaa uudelleenohjaus-URI:ta",
-      "description": "Lähetä edelleen /host/opkssh-callback, ennen versiota 2.9 käytetty uudelleenohjaus-URI. Poista tämä käytöstä, kun identiteetintarjoajasi sallivat uuden."
     }
   },
   "hosts": {

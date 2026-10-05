@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "URI de redirecționare",
       "description": "Înregistrați această adresă URL ca URI de redirecționare permisă cu fiecare furnizor de identitate din configurația OPKSSH."
-    },
-    "legacyCallback": {
-      "label": "Folosește vechiul URI de redirecționare",
-      "description": "Continuă să trimiți /host/opkssh-callback, URI-ul de redirecționare folosit înainte de versiunea 2.9. Dezactivează această opțiune odată ce furnizorii de identitate îl permit pe cel nou."
     }
   },
   "hosts": {

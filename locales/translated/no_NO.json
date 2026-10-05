@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "Omdirigerings-URI",
       "description": "Registrer denne URL-en som en tillatt omdirigerings-URI hos alle identitetsleverandører i OPKSSH-konfigurasjonen din."
-    },
-    "legacyCallback": {
-      "label": "Bruk den gamle omdirigerings-URI-en",
-      "description": "Fortsett å sende /host/opkssh-callback, omdirigerings-URI-en som ble brukt før 2.9. Slå av dette når identitetsleverandørene dine tillater den nye."
     }
   },
   "hosts": {

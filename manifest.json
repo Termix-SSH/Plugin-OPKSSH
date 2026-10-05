@@ -35,21 +35,6 @@
           "key": "redirectUri",
           "type": "custom",
           "component": "redirectUri"
-        },
-        {
-          "key": "legacyCallback",
-          "type": "boolean",
-          "labelKey": "settings.legacyCallback.label",
-          "descriptionKey": "settings.legacyCallback.description",
-          "default": false
-        }
-      ]
-    },
-    "http": {
-      "legacyRedirects": [
-        {
-          "from": "/host/opkssh-callback",
-          "to": "/callback"
         }
       ]
     },

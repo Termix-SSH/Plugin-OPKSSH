@@ -231,15 +231,6 @@ describe("the browser sign-in", () => {
     });
   });
 
-  it("keeps the old callback for an install upgraded from 2.8", async () => {
-    server = await startServer({ settings: { legacyCallback: true } });
-    await writeConfig();
-    await startSignIn();
-    expect(server.mock.processRuns[0].args).toContain(
-      "--remote-redirect-uri=https://termix.test/host/opkssh-callback",
-    );
-  });
-
   it("writes a template and reports a missing config", async () => {
     server = await startServer();
     const socket = await startSignIn();
@@ -253,7 +244,7 @@ describe("the browser sign-in", () => {
   it("refuses redirect_uris that are not localhost", async () => {
     server = await startServer();
     await writeConfig(
-      `${PROVIDERS_CONFIG}    redirect_uris:\n      - https://termix.example/host/opkssh-callback\n`,
+      `${PROVIDERS_CONFIG}    redirect_uris:\n      - https://termix.example/plugin-api/opkssh/callback\n`,
     );
     const socket = await startSignIn();
     expect(socket.sent[0]).toMatchObject({ type: "opkssh_config_error" });

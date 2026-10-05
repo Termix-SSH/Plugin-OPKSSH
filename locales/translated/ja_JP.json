@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "リダイレクトURI",
       "description": "OPKSSHの設定で、このURLを許可されたリダイレクトURIとしてすべてのIDプロバイダーに登録してください。"
-    },
-    "legacyCallback": {
-      "label": "古いリダイレクトURIを使用する",
-      "description": "バージョン2.9以前に使用されていたリダイレクトURIである/host/opkssh-callbackを送信し続けてください。IDプロバイダーが新しいURIを許可したら、この設定を無効にしてください。"
     }
   },
   "hosts": {

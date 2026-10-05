@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "重定向 URI",
       "description": "将此 URL 注册为 OPKSSH 配置中每个身份提供程序允许的重定向 URI。"
-    },
-    "legacyCallback": {
-      "label": "使用旧的重定向 URI",
-      "description": "继续发送 /host/opkssh-callback，这是 2.9 版本之前使用的重定向 URI。一旦您的身份提供商允许使用新的重定向 URI，就关闭此功能。"
     }
   },
   "hosts": {

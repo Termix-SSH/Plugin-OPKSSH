@@ -16,8 +16,6 @@ import type { CertificateIdentity, TokenStore } from "./token-store.js";
 /** How long OPKSSH may wait for the browser sign-in. */
 export const AUTH_TIMEOUT_MS = 60 * 1000;
 
-/** Where the identity provider sends the browser back, before 2.9. */
-export const LEGACY_CALLBACK_PATH = "/host/opkssh-callback";
 /** The plugin's own routes, relative to the install's base URL. */
 export const PLUGIN_PATH = "/plugin-api/opkssh";
 export const CALLBACK_PATH = `${PLUGIN_PATH}/callback`;
@@ -103,11 +101,6 @@ export function createAuthSessions(
     return path.join(await ctx.files.dataDir(), CONFIG_FILE);
   }
 
-  async function callbackPath(): Promise<string> {
-    const legacy = await ctx.settings.get<boolean>("legacyCallback");
-    return legacy ? LEGACY_CALLBACK_PATH : CALLBACK_PATH;
-  }
-
   async function end(requestId: string): Promise<void> {
     const session = sessions.get(requestId);
     if (!session || session.closed) return;
@@ -179,10 +172,7 @@ export function createAuthSessions(
       session.status = "waiting_for_auth";
       const origin = session.remoteRedirectUri.slice(
         0,
-        session.remoteRedirectUri.length -
-          (session.remoteRedirectUri.endsWith(LEGACY_CALLBACK_PATH)
-            ? LEGACY_CALLBACK_PATH.length
-            : CALLBACK_PATH.length),
+        session.remoteRedirectUri.length - CALLBACK_PATH.length,
       );
       send(session.socket, {
         type: "opkssh_status",
@@ -317,8 +307,6 @@ export function createAuthSessions(
       return sessions.get(requestId);
     },
 
-    callbackPath,
-
     async start(request: StartRequest): Promise<string> {
       const { socket } = request;
       let config;
@@ -341,7 +329,7 @@ export function createAuthSessions(
         return "";
       }
 
-      const remoteRedirectUri = `${request.requestOrigin}${await callbackPath()}`;
+      const remoteRedirectUri = `${request.requestOrigin}${CALLBACK_PATH}`;
       const redirects = validateRedirectUris(
         config.providers,
         remoteRedirectUri,

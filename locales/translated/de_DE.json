@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "Umleitungs-URI",
       "description": "Registrieren Sie diese URL als zulässige Umleitungs-URI bei jedem Identitätsanbieter in Ihrer OPKSSH-Konfiguration."
-    },
-    "legacyCallback": {
-      "label": "Verwenden Sie die alte Umleitungs-URI.",
-      "description": "Senden Sie weiterhin /host/opkssh-callback, die Umleitungs-URI, die vor Version 2.9 verwendet wurde. Deaktivieren Sie diese Funktion, sobald Ihre Identitätsanbieter die neue URI zulassen."
     }
   },
   "hosts": {

@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "URI Pengalihan",
       "description": "Daftarkan URL ini sebagai URI pengalihan yang diizinkan dengan setiap penyedia identitas di konfigurasi OPKSSH Anda."
-    },
-    "legacyCallback": {
-      "label": "Gunakan URI pengalihan lama.",
-      "description": "Tetap kirimkan /host/opkssh-callback, URI pengalihan yang digunakan sebelum versi 2.9. Matikan ini setelah penyedia identitas Anda mengizinkan yang baru."
     }
   },
   "hosts": {

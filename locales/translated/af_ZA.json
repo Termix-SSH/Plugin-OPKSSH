@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "Herlei URI",
       "description": "Registreer hierdie URL as 'n toegelate herleidings-URI by elke identiteitsverskaffer in jou OPKSSH-konfigurasie."
-    },
-    "legacyCallback": {
-      "label": "Gebruik die ou aanstuur-URI",
-      "description": "Hou aan om /host/opkssh-callback te stuur, die aanstuur-URI wat voor 2.9 gebruik is. Skakel dit af sodra jou identiteitsverskaffers die nuwe een toelaat."
     }
   },
   "hosts": {

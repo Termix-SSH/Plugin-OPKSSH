@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "URI přesměrování",
       "description": "Zaregistrujte tuto URL jako povolený URI pro přesměrování u každého poskytovatele identity ve vaší konfiguraci OPKSSH."
-    },
-    "legacyCallback": {
-      "label": "Použít starý identifikátor URI pro přesměrování",
-      "description": "Pokračujte v odesílání /host/opkssh-callback, což je URI pro přesměrování používané před verzí 2.9. Jakmile vaši poskytovatelé identity povolí nový URI, vypněte ho."
     }
   },
   "hosts": {

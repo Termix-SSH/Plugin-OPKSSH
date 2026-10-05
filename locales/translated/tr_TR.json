@@ -20,10 +20,6 @@
     "redirectUri": {
       "label": "Yönlendirme URI'si",
       "description": "OPKSSH yapılandırmanızda bu URL'yi her kimlik sağlayıcısında izin verilen yönlendirme URI'si olarak kaydedin."
-    },
-    "legacyCallback": {
-      "label": "Eski yönlendirme URI'sini kullanın.",
-      "description": "2.9 öncesinde kullanılan yönlendirme URI'si olan /host/opkssh-callback'i göndermeye devam edin. Kimlik sağlayıcılarınız yenisine izin verdiğinde bunu kapatın."
     }
   },
   "hosts": {
