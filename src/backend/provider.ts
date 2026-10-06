@@ -6,7 +6,7 @@ import { applyCertificateAuth } from "@termix-ssh/plugin-sdk/ssh-certs";
 import type { AuthSessions, SignInSocket } from "./auth-session.js";
 import type { TokenStore } from "./token-store.js";
 
-export const AUTH_TYPE = "opkssh";
+const AUTH_TYPE = "opkssh";
 
 const REQUIRED_MESSAGE =
   "OPKSSH authentication required. Please open a Terminal connection to this host first to complete browser-based authentication. Your session will be cached for 24 hours.";

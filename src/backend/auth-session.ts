@@ -14,11 +14,11 @@ import {
 import type { CertificateIdentity, TokenStore } from "./token-store.js";
 
 /** How long OPKSSH may wait for the browser sign-in. */
-export const AUTH_TIMEOUT_MS = 60 * 1000;
+const AUTH_TIMEOUT_MS = 60 * 1000;
 
 /** The plugin's own routes, relative to the install's base URL. */
 export const PLUGIN_PATH = "/plugin-api/opkssh";
-export const CALLBACK_PATH = `${PLUGIN_PATH}/callback`;
+const CALLBACK_PATH = `${PLUGIN_PATH}/callback`;
 
 /** The terminal socket, as far as a sign-in needs it. */
 export interface SignInSocket {

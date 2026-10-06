@@ -9,7 +9,7 @@ type Drizzle = any;
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 /** How long a certificate is cached after sign-in. */
-export const TOKEN_LIFETIME_MS = 24 * 60 * 60 * 1000;
+const TOKEN_LIFETIME_MS = 24 * 60 * 60 * 1000;
 
 export interface StoredCertificate {
   sshCert: string;
