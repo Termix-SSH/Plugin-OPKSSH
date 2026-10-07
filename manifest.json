@@ -10,6 +10,12 @@
   "repository": "https://github.com/Termix-SSH/Plugin-OPKSSH",
   "category": "Access & Security",
   "icon": "ShieldCheck",
+  "features": [
+    "Adds the OPKSSH auth type to hosts",
+    "Sign in with your identity provider in the browser",
+    "Certificates last 24 hours, so you sign in once a day",
+    "Uses a pinned, checksum verified opkssh release"
+  ],
   "engine": {
     "termix": ">=26.10.0",
     "api": "1"
