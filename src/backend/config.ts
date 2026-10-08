@@ -1,10 +1,11 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { load as loadYaml } from "js-yaml";
+import { docsUrl } from "./docs.js";
 
 export const CONFIG_FILE = "config.yml";
 
-const DOCS_URL = "https://docs.termix.site/features/authentication/opkssh";
+const DOCS_URL = docsUrl();
 const OPKSSH_DOCS_URL =
   "https://github.com/openpubkey/opkssh/blob/main/docs/config.md";
 

@@ -8,6 +8,7 @@
   },
   "license": "Apache-2.0",
   "repository": "https://github.com/Termix-SSH/Plugin-OPKSSH",
+  "docs": "https://docs.termix.site/plugins/opkssh",
   "category": "Access & Security",
   "icon": "ShieldCheck",
   "features": [
@@ -16,9 +17,33 @@
     "Certificates last 24 hours, so you sign in once a day",
     "Uses a pinned, checksum verified opkssh release"
   ],
+  "env": [
+    {
+      "name": "OPKSSH_VERSION",
+      "description": "Use another opkssh release than the one Termix pins. Needs OPKSSH_SHA256 too.",
+      "default": "v0.16.0"
+    },
+    {
+      "name": "OPKSSH_SHA256",
+      "description": "SHA-256 of the opkssh binary for OPKSSH_VERSION. OPKSSH_SHA256_AMD64 and OPKSSH_SHA256_ARM64 set it per CPU."
+    },
+    {
+      "name": "OPKSSH_SHA256_AMD64",
+      "description": "SHA-256 of the x64 binary for OPKSSH_VERSION."
+    },
+    {
+      "name": "OPKSSH_SHA256_ARM64",
+      "description": "SHA-256 of the ARM64 binary for OPKSSH_VERSION."
+    },
+    {
+      "name": "OPKSSH_BUNDLED_DIR",
+      "description": "Folder with a copy of opkssh baked into the image, used before downloading.",
+      "default": "opkssh-bundled"
+    }
+  ],
   "engine": {
     "termix": ">=26.10.0",
-    "api": "1"
+    "api": "^1.2"
   },
   "capabilities": [
     "db:own",

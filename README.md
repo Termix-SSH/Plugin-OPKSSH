@@ -14,6 +14,8 @@
 
 OPKSSH lets you connect to hosts with short-lived SSH certificates from [OpenPubkey SSH](https://github.com/openpubkey/opkssh), after signing in with your identity provider.
 
+Read the [docs](https://docs.termix.site/plugins/opkssh) to set it up and use it.
+
 <br />
 
 ## Features

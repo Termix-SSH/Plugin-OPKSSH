@@ -1,6 +1,7 @@
 import { useTranslation } from "@termix-ssh/plugin-sdk/frontend";
+import { docsUrl } from "./docs";
 
-const DOCS_URL = "https://docs.termix.site/features/authentication/opkssh";
+const DOCS_URL = docsUrl();
 
 /** The host editor's "opkssh" auth method: nothing to fill in, just a pointer. */
 export function OpksshAuthEditor() {
