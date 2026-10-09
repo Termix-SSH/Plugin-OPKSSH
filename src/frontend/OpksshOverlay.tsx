@@ -24,8 +24,12 @@ interface DialogState {
   providers?: Array<{ alias: string; issuer: string }>;
 }
 
-/** How long the sign-in dialog waits before giving up on the connection. */
-const DIALOG_TIMEOUT_MS = 300_000;
+/**
+ * How long the sign-in dialog waits before giving up on the connection: the
+ * server's five minute sign-in limit, plus a little in case its timeout
+ * message never arrives.
+ */
+const DIALOG_TIMEOUT_MS = 5 * 60 * 1000 + 15_000;
 
 /**
  * Runs the OPKSSH browser sign-in for a terminal: asks the server to start

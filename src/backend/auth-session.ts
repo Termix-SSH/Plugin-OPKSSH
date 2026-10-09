@@ -13,8 +13,12 @@ import {
 } from "./config.js";
 import type { CertificateIdentity, TokenStore } from "./token-store.js";
 
-/** How long OPKSSH may wait for the browser sign-in. */
-const AUTH_TIMEOUT_MS = 60 * 1000;
+/**
+ * How long OPKSSH may wait for the browser sign-in. `opkssh login` has no
+ * timeout of its own and waits forever, so this is the only limit. The
+ * terminal's dialog waits a little longer, so this one reports first.
+ */
+export const AUTH_TIMEOUT_MS = 5 * 60 * 1000;
 
 /** The plugin's own routes, relative to the install's base URL. */
 export const PLUGIN_PATH = "/plugin-api/opkssh";

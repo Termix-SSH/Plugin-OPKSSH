@@ -13,6 +13,7 @@ import {
   normalizeSelectOpParam,
   rewriteOpksshHtml,
 } from "../../src/backend/html.js";
+import { isLocalHostname } from "../../src/backend/routes.js";
 
 describe("config", () => {
   it("reads providers and strips the issuer scheme", () => {
@@ -118,5 +119,20 @@ describe("binary", () => {
     };
     expect(binarySpec(env, "linux", "x64").sha256).toBe(amd);
     expect(binarySpec(env, "linux", "arm64").sha256).toBe(arm);
+  });
+});
+
+describe("isLocalHostname", () => {
+  it("knows the loopback names, with or without a port", () => {
+    for (const url of [
+      "http://127.0.0.1:3000/login",
+      "http://localhost:10001/x",
+      "http://[::1]:11110/login-callback",
+    ]) {
+      expect(isLocalHostname(new URL(url).hostname)).toBe(true);
+    }
+    expect(
+      isLocalHostname(new URL("https://accounts.google.com").hostname),
+    ).toBe(false);
   });
 });

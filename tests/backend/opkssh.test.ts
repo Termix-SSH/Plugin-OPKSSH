@@ -3,6 +3,7 @@ import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { PluginCapabilityError } from "@termix-ssh/plugin-sdk/backend";
 import { createMockCtx, createTestDb } from "@termix-ssh/plugin-sdk/testing";
+import { AUTH_TIMEOUT_MS } from "../../src/backend/auth-session.js";
 import {
   HOST,
   LEGACY_DDL,
@@ -206,6 +207,22 @@ describe("the opkssh provider", () => {
 });
 
 describe("the browser sign-in", () => {
+  it("gives the browser sign-in five minutes, then times out", async () => {
+    server = await startServer();
+    await writeConfig();
+    vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
+    try {
+      const socket = await startSignIn();
+      vi.advanceTimersByTime(AUTH_TIMEOUT_MS - 1000);
+      expect(socket.sent.some((m) => m.type === "opkssh_timeout")).toBe(false);
+      vi.advanceTimersByTime(1000);
+      expect(socket.sent.some((m) => m.type === "opkssh_timeout")).toBe(true);
+      expect(AUTH_TIMEOUT_MS).toBe(5 * 60 * 1000);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
   it("runs opkssh with the plugin's config and the public callback", async () => {
     server = await startServer();
     await writeConfig();

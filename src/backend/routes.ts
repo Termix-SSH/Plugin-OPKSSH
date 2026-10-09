@@ -7,6 +7,7 @@ import {
   rewriteOpksshHtml,
 } from "./html.js";
 import {
+  AUTH_TIMEOUT_MS,
   PLUGIN_PATH,
   type AuthSession,
   type AuthSessions,
@@ -30,9 +31,14 @@ export const PUBLIC_PATHS = [
 const REQUEST_COOKIE = "opkssh_request_id";
 const MAX_HOPS = 4;
 
-function isLocalHostname(host: string): boolean {
-  const bare = host.split(":")[0];
-  return bare === "127.0.0.1" || bare === "localhost" || bare === "[::1]";
+/** Whether a URL's hostname is this server's loopback. */
+export function isLocalHostname(hostname: string): boolean {
+  return (
+    hostname === "127.0.0.1" ||
+    hostname === "localhost" ||
+    hostname === "[::1]" ||
+    hostname === "::1"
+  );
 }
 
 function readCookie(req: Request, name: string): string | undefined {
@@ -242,7 +248,7 @@ export function registerRoutes(
 
         if (/^https?:\/\//i.test(location)) {
           const parsed = new URL(location);
-          if (isLocalHostname(parsed.host)) {
+          if (isLocalHostname(parsed.hostname)) {
             if (!session.callbackPort) {
               const port = parseInt(parsed.port, 10);
               if (!Number.isNaN(port)) session.callbackPort = port;
@@ -268,7 +274,7 @@ export function registerRoutes(
       ) {
         try {
           const parsed = new URL(response.location);
-          if (!isLocalHostname(parsed.host)) external = parsed;
+          if (!isLocalHostname(parsed.hostname)) external = parsed;
         } catch {
           external = null;
         }
@@ -457,7 +463,7 @@ export function registerRoutes(
         path: `${base}/`,
         httpOnly: true,
         sameSite: "lax",
-        maxAge: 5 * 60 * 1000,
+        maxAge: AUTH_TIMEOUT_MS,
       });
 
       const contentType = String(response.headers["content-type"] || "");
