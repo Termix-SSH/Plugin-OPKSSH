@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+### Fixed
+
+- When opkssh fails, the sign in shows its error instead of only the exit code
+
 ## 1.0.0
 
 ### Added

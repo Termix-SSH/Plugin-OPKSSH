@@ -43,6 +43,8 @@ export interface AuthSession {
   status: "starting" | "waiting_for_auth" | "authenticating" | "completed";
   socket: SignInSocket;
   output: string;
+  /** The last error line opkssh printed, shown if it exits early. */
+  lastError: string;
   privateKey: string;
   sshCert: string;
   identity: CertificateIdentity;
@@ -235,6 +237,12 @@ export function createAuthSessions(
       handleOutput(session, stderr);
     }
 
+    const errorLine = stderr
+      .split("\n")
+      .map((line) => line.trim())
+      .find((line) => /^error:/i.test(line));
+    if (errorLine) session.lastError = errorLine.replace(/^error:\s*/i, "");
+
     const lower = stderr.toLowerCase();
     const configError = (error: string, instructions: string) => {
       send(session.socket, {
@@ -363,6 +371,7 @@ export function createAuthSessions(
         status: "starting",
         socket,
         output: "",
+        lastError: "",
         privateKey: "",
         sshCert: "",
         identity: {},
@@ -400,7 +409,9 @@ export function createAuthSessions(
               send(socket, {
                 type: "opkssh_error",
                 requestId,
-                error: `OPKSSH process exited with code ${code}`,
+                error: session.lastError
+                  ? `OPKSSH could not sign in: ${session.lastError}`
+                  : `OPKSSH process exited with code ${code}`,
               });
             }
             void end(requestId);

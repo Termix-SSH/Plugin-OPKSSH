@@ -268,6 +268,23 @@ describe("the browser sign-in", () => {
     expect(String(socket.sent[0].error)).toMatch(/must only contain localhost/);
   });
 
+  it("says why opkssh exited instead of just its exit code", async () => {
+    server = await startServer();
+    await writeConfig();
+    const socket = await startSignIn();
+    const child = server.processes[0];
+    child.emitStderr(
+      "Error: invalid provider issuer value. Expected issuer to start with 'https://'\n",
+    );
+    child.exit(1);
+    await vi.waitFor(() =>
+      expect(socket.sent.find((m) => m.type === "opkssh_error")).toMatchObject({
+        error:
+          "OPKSSH could not sign in: invalid provider issuer value. Expected issuer to start with 'https://'",
+      }),
+    );
+  });
+
   it("kills the process when the terminal goes away", async () => {
     server = await startServer();
     await writeConfig();
