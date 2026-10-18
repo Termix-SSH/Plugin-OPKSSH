@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "התחבר למארחים באמצעות תעודות OpenPubkey SSH לזמן קצר לאחר התחברות עם ספק הזהות שלך."
   }
 }

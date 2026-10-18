@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Verbind met gasheërs met kortstondige OpenPubkey SSH-sertifikate nadat jy aangemeld het met jou identiteitsverskaffer."
   }
 }

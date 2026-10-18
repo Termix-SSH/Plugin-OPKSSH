@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Ligue-se a hosts com certificados SSH OpenPubkey de curta duração após iniciar sessão com o seu provedor de identidade."
   }
 }

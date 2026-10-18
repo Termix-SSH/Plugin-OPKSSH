@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "아이덴티티 제공자로 로그인한 후, 짧은 유효 기간의 OpenPubkey SSH 인증서를 사용하여 호스트에 연결합니다."
   }
 }

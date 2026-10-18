@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "アイデンティティプロバイダーでサインインした後、短期間の OpenPubkey SSH 証明書を使用してホストに接続します。"
   }
 }

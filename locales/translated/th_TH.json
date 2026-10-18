@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "เชื่อมต่อกับโฮสต์โดยใช้ใบรับรอง OpenPubkey SSH ที่มีอายุสั้น หลังจากเข้าสู่ระบบด้วยผู้ให้บริการตัวตนของคุณ"
   }
 }

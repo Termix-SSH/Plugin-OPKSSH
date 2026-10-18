@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Pripojte sa k hostiteľom pomocou krátkodobo platných SSH certifikátov OpenPubkey po prihlásení cez vášho poskytovateľa identity."
   }
 }

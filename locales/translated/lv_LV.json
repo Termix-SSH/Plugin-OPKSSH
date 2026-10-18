@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Savienojieties ar resursdatoriem, izmantojot īslaicīgus OpenPubkey SSH sertifikātus, pēc pieteikšanās ar savu identitātes sniedzēju."
   }
 }

@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "الاتصال بالمضيفين باستخدام شهادات OpenPubkey SSH قصيرة الأجل بعد تسجيل الدخول عبر مزود الهوية الخاص بك."
   }
 }

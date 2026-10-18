@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "আপনার আইডেন্টিটি প্রোভাইডার দিয়ে সাইন ইন করার পরে সংক্ষিপ্ত মেয়াদী OpenPubkey SSH সার্টিফিকেট ব্যবহার করে হোস্টগুলোর সাথে সংযোগ করুন।"
   }
 }

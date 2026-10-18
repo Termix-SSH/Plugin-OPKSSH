@@ -13,5 +13,6 @@
   "settings.redirectUri.label": "e2a1c6a4e50f",
   "settings.redirectUri.description": "bc795f8c8597",
   "hosts.filterAuthOpkssh": "b5993ab0aaaa",
-  "plugin.name": "b5993ab0aaaa"
+  "plugin.name": "b5993ab0aaaa",
+  "plugin.description": "e3167dc4adf4"
 }

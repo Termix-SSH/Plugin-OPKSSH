@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Συνδεθείτε σε hosts με βραχύβια SSH πιστοποιητικά OpenPubkey, αφού συνδεθείτε μέσω του πάροχου ταυτότητάς σας."
   }
 }

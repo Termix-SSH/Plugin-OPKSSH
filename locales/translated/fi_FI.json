@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Yhdistä isäntiin lyhytaikaisilla OpenPubkey-SSH-varmenteilla kirjautumisen jälkeen identiteettitoimittajallasi."
   }
 }

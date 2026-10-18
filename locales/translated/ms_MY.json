@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Sambung ke hos dengan sijil SSH OpenPubkey jangka pendek selepas log masuk dengan penyedia identiti anda."
   }
 }

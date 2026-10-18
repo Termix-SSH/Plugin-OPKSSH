@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Kết nối đến các host bằng chứng chỉ SSH OpenPubkey có thời hạn ngắn sau khi đăng nhập bằng nhà cung cấp danh tính của bạn."
   }
 }

@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Koble til vertsmaskiner med kortvarige OpenPubkey SSH-sertifikater etter pålogging med identitetsleverandøren din."
   }
 }

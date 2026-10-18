@@ -72,6 +72,10 @@ function send(socket: SignInSocket, message: Record<string, unknown>): void {
 
 const CHOOSER_PATTERN =
   /(?:Opening browser to|Open your browser to:)\s*http:\/\/(?:localhost|127\.0\.0\.1):(\d+)\/chooser/;
+// With one provider or a default_provider, OPKSSH skips the chooser and sends
+// the browser straight to /login on its callback listener.
+const DIRECT_LOGIN_PATTERN =
+  /(?:Opening browser to|Open your browser to:)\s*http:\/\/(?:localhost|127\.0\.0\.1):(\d+)\/login(?:[\s?]|$)/;
 const CALLBACK_PORT_PATTERN =
   /listening on http:\/\/(?:127\.0\.0\.1|localhost):(\d+)\//;
 const PRIVATE_KEY_PATTERN =
@@ -186,6 +190,25 @@ export function createAuthSessions(
         stage: "chooser",
         url: `${origin}${PLUGIN_PATH}/chooser/${session.requestId}`,
         providers: session.providers,
+        message: "Please authenticate in your browser",
+      });
+    }
+
+    const direct = session.output.match(DIRECT_LOGIN_PATTERN);
+    if (direct && session.status === "starting") {
+      const port = parseInt(direct[1], 10);
+      session.localPort = port;
+      session.callbackPort = port;
+      session.status = "waiting_for_auth";
+      const origin = session.remoteRedirectUri.slice(
+        0,
+        session.remoteRedirectUri.length - CALLBACK_PATH.length,
+      );
+      send(session.socket, {
+        type: "opkssh_status",
+        requestId: session.requestId,
+        stage: "chooser",
+        url: `${origin}${PLUGIN_PATH}/chooser/${session.requestId}/login`,
         message: "Please authenticate in your browser",
       });
     }

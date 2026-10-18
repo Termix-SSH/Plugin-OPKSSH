@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Csatlakozzon a gazdagépekhez rövid életű OpenPubkey SSH-tanúsítványok segítségével, miután bejelentkezett a hitelesítési szolgáltatójával."
   }
 }

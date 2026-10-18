@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Sambungkan ke host dengan sertifikat SSH OpenPubkey berumur pendek setelah masuk dengan penyedia identitas Anda."
   }
 }

@@ -248,6 +248,34 @@ describe("the browser sign-in", () => {
     });
   });
 
+  it("sends the browser to the provider when OPKSSH skips the chooser", async () => {
+    server = await startServer();
+    await writeConfig();
+    const socket = await startSignIn();
+    // A default_provider makes OPKSSH open /login on its callback listener.
+    server.processes[0].emitStdout(
+      "Open your browser to: http://localhost:3000/login\n",
+    );
+    const status = socket.sent.find((m) => m.type === "opkssh_status");
+    expect(status).toMatchObject({
+      stage: "chooser",
+      url: expect.stringMatching(
+        /^https:\/\/termix\.test\/plugin-api\/opkssh\/chooser\/[\w-]+\/login$/,
+      ),
+    });
+    expect(status).not.toHaveProperty("providers");
+
+    const requestId = String(status?.requestId);
+    const forwarded = await server.request("GET", "/callback?code=x&state=s", {
+      user: "",
+      headers: { cookie: `opkssh_request_id=${requestId}` },
+    });
+    expect(forwarded.status).toBe(302);
+    expect(forwarded.location).toBe(
+      `/plugin-api/opkssh/callback/${requestId}?code=x&state=s`,
+    );
+  });
+
   it("writes a template and reports a missing config", async () => {
     server = await startServer();
     const socket = await startSignIn();

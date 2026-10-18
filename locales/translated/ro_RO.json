@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Conectați-vă la gazde cu certificate SSH OpenPubkey cu durată de viață scurtă, după autentificare cu furnizorul de identitate."
   }
 }

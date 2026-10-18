@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "अपने आइडेंटिटी प्रोवाइडर के साथ साइन इन करने के बाद, अल्पकालिक OpenPubkey SSH प्रमाणपत्रों के साथ होस्ट से कनेक्ट करें।"
   }
 }

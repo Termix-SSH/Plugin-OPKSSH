@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Ühendu hostidega lühiajaliste OpenPubkey SSH-sertifikaatide abil pärast sisselogimist oma identiteedipakkujaga."
   }
 }

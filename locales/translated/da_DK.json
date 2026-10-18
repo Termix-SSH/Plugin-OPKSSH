@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "Opret forbindelse til værter med kortvarige OpenPubkey SSH-certifikater efter login med din identitetsudbyder."
   }
 }

@@ -26,6 +26,7 @@
     "filterAuthOpkssh": "OPKSSH"
   },
   "plugin": {
-    "name": "OPKSSH"
+    "name": "OPKSSH",
+    "description": "使用身份提供商登录后，通过短期 OpenPubkey SSH 证书连接主机。"
   }
 }
