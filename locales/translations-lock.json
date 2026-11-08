@@ -14,5 +14,11 @@
   "settings.redirectUri.description": "bc795f8c8597",
   "hosts.filterAuthOpkssh": "b5993ab0aaaa",
   "plugin.name": "b5993ab0aaaa",
-  "plugin.description": "e3167dc4adf4"
+  "plugin.description": "e3167dc4adf4",
+  "resultPage.signedIn": "1b6c524ffb71",
+  "resultPage.failed": "108b931431b9",
+  "resultPage.closing": "3bd669f590a2",
+  "resultPage.tryAgain": "1e2ae230c483",
+  "resultPage.close": "e3896a930398",
+  "resultPage.requestId": "de9cd8b45ac4"
 }

@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Povežite se s poslužiteljima pomoću kratkotrajnih OpenPubkey SSH certifikata nakon prijave putem vašeg pružatelja identiteta."
+  },
+  "resultPage": {
+    "signedIn": "Prijava uspješna",
+    "failed": "Prijava nije uspjela",
+    "closing": "Možete zatvoriti ovaj prozor i vratiti se u Termix.",
+    "tryAgain": "Zatvorite ovaj prozor i pokušajte ponovno iz Termixa.",
+    "close": "Zatvori prozor",
+    "requestId": "ID zahtjeva: {{id}}"
   }
 }

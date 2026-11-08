@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Conecte-se a hosts com certificados SSH OpenPubkey de curta duração após fazer login com seu provedor de identidade."
+  },
+  "resultPage": {
+    "signedIn": "Conectado",
+    "failed": "Falha ao conectar",
+    "closing": "Você pode fechar esta janela e voltar para o Termix.",
+    "tryAgain": "Feche esta janela e tente novamente no Termix.",
+    "close": "Fechar janela",
+    "requestId": "ID da solicitação: {{id}}"
   }
 }

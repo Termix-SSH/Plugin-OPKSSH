@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Koble til vertsmaskiner med kortvarige OpenPubkey SSH-sertifikater etter pålogging med identitetsleverandøren din."
+  },
+  "resultPage": {
+    "signedIn": "Innlogget",
+    "failed": "Innlogging mislyktes",
+    "closing": "Du kan lukke dette vinduet og gå tilbake til Termix.",
+    "tryAgain": "Lukk dette vinduet og prøv igjen fra Termix.",
+    "close": "Lukk vinduet",
+    "requestId": "Forespørsel-ID: {{id}}"
   }
 }

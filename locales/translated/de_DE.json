@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Verbinden Sie sich mit Hosts, die kurzlebige OpenPubkey-SSH-Zertifikate verwenden, nachdem Sie sich bei Ihrem Identitätsanbieter angemeldet haben."
+  },
+  "resultPage": {
+    "signedIn": "Angemeldet",
+    "failed": "Anmeldung fehlgeschlagen",
+    "closing": "Du kannst dieses Fenster schließen und zu Termix zurückkehren.",
+    "tryAgain": "Schließe dieses Fenster und versuche es erneut über Termix.",
+    "close": "Fenster schließen",
+    "requestId": "Anfrage-ID: {{id}}"
   }
 }

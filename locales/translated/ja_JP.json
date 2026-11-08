@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "アイデンティティプロバイダーでサインインした後、短期間の OpenPubkey SSH 証明書を使用してホストに接続します。"
+  },
+  "resultPage": {
+    "signedIn": "ログインしました",
+    "failed": "ログインに失敗しました",
+    "closing": "このウィンドウを閉じて、Termix に戻ってください。",
+    "tryAgain": "このウィンドウを閉じて、Termix からもう一度お試しください。",
+    "close": "ウィンドウを閉じる",
+    "requestId": "リクエスト ID: {{id}}"
   }
 }

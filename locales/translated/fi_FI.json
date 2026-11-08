@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Yhdistä isäntiin lyhytaikaisilla OpenPubkey-SSH-varmenteilla kirjautumisen jälkeen identiteettitoimittajallasi."
+  },
+  "resultPage": {
+    "signedIn": "Kirjautuminen onnistui",
+    "failed": "Kirjautuminen epäonnistui",
+    "closing": "Voit sulkea tämän ikkunan ja palata Termixiin.",
+    "tryAgain": "Sulje tämä ikkuna ja yritä uudelleen Termixissä.",
+    "close": "Sulje ikkuna",
+    "requestId": "Pyyntö-ID: {{id}}"
   }
 }

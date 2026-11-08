@@ -389,6 +389,8 @@ describe("routes", () => {
     server = await startServer();
     const response = await server.request("GET", "/chooser/nope", { user: "" });
     expect(response.status).toBe(404);
-    expect(String(response.body)).toContain("Session Not Found");
+    expect(String(response.body)).toContain(
+      "This authentication session has expired",
+    );
   });
 });

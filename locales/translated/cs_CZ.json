@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Připojte se k hostitelům pomocí krátkodobých SSH certifikátů OpenPubkey po přihlášení prostřednictvím vašeho poskytovatele identity."
+  },
+  "resultPage": {
+    "signedIn": "Přihlášení úspěšné",
+    "failed": "Přihlášení selhalo",
+    "closing": "Toto okno můžete zavřít a vrátit se do Termixu.",
+    "tryAgain": "Zavřete toto okno a zkuste to znovu z Termixu.",
+    "close": "Zavřít okno",
+    "requestId": "ID požadavku: {{id}}"
   }
 }

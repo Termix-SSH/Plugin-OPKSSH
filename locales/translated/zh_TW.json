@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "使用身分提供者登入後，透過短期 OpenPubkey SSH 憑證連線主機。"
+  },
+  "resultPage": {
+    "signedIn": "已登入",
+    "failed": "登入失敗",
+    "closing": "您可以關閉此視窗並返回 Termix。",
+    "tryAgain": "請關閉此視窗，並從 Termix 重新嘗試。",
+    "close": "關閉視窗",
+    "requestId": "請求 ID：{{id}}"
   }
 }

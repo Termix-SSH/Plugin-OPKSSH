@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Csatlakozzon a gazdagépekhez rövid életű OpenPubkey SSH-tanúsítványok segítségével, miután bejelentkezett a hitelesítési szolgáltatójával."
+  },
+  "resultPage": {
+    "signedIn": "Bejelentkezve",
+    "failed": "A bejelentkezés sikertelen",
+    "closing": "Bezárhatja ezt az ablakot, és visszatérhet a Termixbe.",
+    "tryAgain": "Zárja be ezt az ablakot, és próbálja újra a Termixben.",
+    "close": "Ablak bezárása",
+    "requestId": "Kérés azonosítója: {{id}}"
   }
 }

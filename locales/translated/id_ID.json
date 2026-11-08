@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Sambungkan ke host dengan sertifikat SSH OpenPubkey berumur pendek setelah masuk dengan penyedia identitas Anda."
+  },
+  "resultPage": {
+    "signedIn": "Berhasil masuk",
+    "failed": "Gagal masuk",
+    "closing": "Anda dapat menutup jendela ini dan kembali ke Termix.",
+    "tryAgain": "Tutup jendela ini dan coba lagi dari Termix.",
+    "close": "Tutup jendela",
+    "requestId": "ID Permintaan: {{id}}"
   }
 }

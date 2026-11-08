@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Connettiti agli host con certificati SSH OpenPubkey a breve durata dopo aver effettuato l'accesso con il tuo provider di identità."
+  },
+  "resultPage": {
+    "signedIn": "Accesso effettuato",
+    "failed": "Accesso non riuscito",
+    "closing": "Puoi chiudere questa finestra e tornare a Termix.",
+    "tryAgain": "Chiudi questa finestra e riprova da Termix.",
+    "close": "Chiudi finestra",
+    "requestId": "ID richiesta: {{id}}"
   }
 }

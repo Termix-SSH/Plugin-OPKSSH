@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "使用身份提供商登录后，通过短期 OpenPubkey SSH 证书连接主机。"
+  },
+  "resultPage": {
+    "signedIn": "已登录",
+    "failed": "登录失败",
+    "closing": "您可以关闭此窗口并返回 Termix。",
+    "tryAgain": "关闭此窗口，然后在 Termix 中重试。",
+    "close": "关闭窗口",
+    "requestId": "请求 ID：{{id}}"
   }
 }

@@ -6,6 +6,7 @@ import {
   renderErrorPage,
   rewriteOpksshHtml,
 } from "./html.js";
+import { sendResultPage } from "./result-page.js";
 import {
   AUTH_TIMEOUT_MS,
   PLUGIN_PATH,
@@ -27,6 +28,16 @@ export const PUBLIC_PATHS = [
   "/callback/:requestId",
   "/callback/:requestId/*",
 ];
+
+/** The text of an HTML page, for an error OPKSSH served. */
+function stripTags(html: string): string {
+  return html
+    .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 500);
+}
 
 const REQUEST_COOKIE = "opkssh_request_id";
 const MAX_HOPS = 4;
@@ -468,6 +479,21 @@ export function registerRoutes(
 
       const contentType = String(response.headers["content-type"] || "");
       const data = Buffer.from(response.data as ArrayBuffer);
+      // OPKSSH ends the sign-in with its own page; show the Termix one.
+      if (
+        targetPath.startsWith("/login-callback") &&
+        contentType.includes("text/html")
+      ) {
+        res.removeHeader("content-length");
+        res.removeHeader("content-security-policy");
+        const ok = response.status >= 200 && response.status < 300;
+        sendResultPage(res, response.status, {
+          ok,
+          detail: ok ? undefined : stripTags(data.toString("utf-8")),
+          requestId: ok ? undefined : requestId,
+        });
+        return;
+      }
       if (contentType.includes("text/html")) {
         res
           .status(response.status)

@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Ühendu hostidega lühiajaliste OpenPubkey SSH-sertifikaatide abil pärast sisselogimist oma identiteedipakkujaga."
+  },
+  "resultPage": {
+    "signedIn": "Sisselogimine õnnestus",
+    "failed": "Sisselogimine ebaõnnestus",
+    "closing": "Saate selle akna sulgeda ja naasta Termixi.",
+    "tryAgain": "Sulgege see aken ja proovige uuesti Termixis.",
+    "close": "Sulge aken",
+    "requestId": "Päringu ID: {{id}}"
   }
 }

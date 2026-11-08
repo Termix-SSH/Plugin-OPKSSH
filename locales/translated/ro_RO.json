@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Conectați-vă la gazde cu certificate SSH OpenPubkey cu durată de viață scurtă, după autentificare cu furnizorul de identitate."
+  },
+  "resultPage": {
+    "signedIn": "Autentificare reușită",
+    "failed": "Autentificare eșuată",
+    "closing": "Puteți închide această fereastră și reveni la Termix.",
+    "tryAgain": "Închideți această fereastră și încercați din nou din Termix.",
+    "close": "Închide fereastra",
+    "requestId": "ID cerere: {{id}}"
   }
 }

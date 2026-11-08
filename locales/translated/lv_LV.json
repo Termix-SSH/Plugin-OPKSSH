@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Savienojieties ar resursdatoriem, izmantojot īslaicīgus OpenPubkey SSH sertifikātus, pēc pieteikšanās ar savu identitātes sniedzēju."
+  },
+  "resultPage": {
+    "signedIn": "Pieteicies",
+    "failed": "Pieteikšanās neizdevās",
+    "closing": "Varat aizvērt šo logu un atgriezties Termix.",
+    "tryAgain": "Aizveriet šo logu un mēģiniet vēlreiz no Termix.",
+    "close": "Aizvērt logu",
+    "requestId": "Pieprasījuma ID: {{id}}"
   }
 }

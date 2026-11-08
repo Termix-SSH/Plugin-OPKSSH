@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+
+### Changed
+
+- The page you land on after signing in now matches the Termix look and follows your theme and language
+
 ## 1.0.2
 
 ### Changed

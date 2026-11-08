@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Prisijungti prie serverių naudojant trumpalaikius OpenPubkey SSH sertifikatus po prisijungimo su savo tapatybės teikėju."
+  },
+  "resultPage": {
+    "signedIn": "Prisijungta",
+    "failed": "Prisijungimas nepavyko",
+    "closing": "Galite uždaryti šį langą ir grįžti į Termix.",
+    "tryAgain": "Uždarykite šį langą ir pabandykite dar kartą iš Termix.",
+    "close": "Uždaryti langą",
+    "requestId": "Užklausos ID: {{id}}"
   }
 }

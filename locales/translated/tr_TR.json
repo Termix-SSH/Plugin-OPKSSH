@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Kimlik sağlayıcınızla oturum açtıktan sonra, kısa ömürlü OpenPubkey SSH sertifikalarıyla ana makinelere bağlanın."
+  },
+  "resultPage": {
+    "signedIn": "Giriş başarılı",
+    "failed": "Giriş başarısız",
+    "closing": "Bu pencereyi kapatabilir ve Termix'e dönebilirsiniz.",
+    "tryAgain": "Bu pencereyi kapatın ve Termix'ten tekrar deneyin.",
+    "close": "Pencereyi kapat",
+    "requestId": "İstek Kimliği: {{id}}"
   }
 }

@@ -1,11 +1,5 @@
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+import { randomBytes } from "node:crypto";
+import { renderResultPage } from "./result-page.js";
 
 // Replicates openpubkey's client/choosers/web_chooser.go IssuerToName().
 // OPKSSH's /select handler keys its providerMap by this derived name, NOT by the
@@ -63,87 +57,13 @@ type OpksshErrorPageOptions = {
   statusCode?: number;
 };
 
+/** A failed sign-in, in the same look as the success page. */
 export function renderErrorPage(opts: OpksshErrorPageOptions): string {
-  const title = escapeHtml(opts.title);
-  const heading = escapeHtml(opts.heading);
-  const message = escapeHtml(opts.message);
-  const detailsBlock = opts.details
-    ? `<pre class="details">${escapeHtml(opts.details)}</pre>`
-    : "";
-  const requestIdBlock = opts.requestId
-    ? `<p class="request-id">Request ID: ${escapeHtml(opts.requestId)}</p>`
-    : "";
-
-  return `<!DOCTYPE html>
-<html>
-<head>
-  <title>${title}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: #18181b;
-      color: #fafafa;
-      padding: 1rem;
-    }
-    .container {
-      text-align: center;
-      background: #27272a;
-      padding: 3rem 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      max-width: 720px;
-      width: 100%;
-    }
-    h1 {
-      color: #fafafa;
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    p {
-      color: #9ca3af;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-    p + p { margin-top: 0.5rem; }
-    .details {
-      color: #d4d4d8;
-      text-align: left;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.8rem;
-      line-height: 1.45;
-      margin-top: 1.25rem;
-      padding: 0.875rem 1rem;
-      background: #0f0f11;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      white-space: pre-wrap;
-      word-break: break-word;
-      overflow-x: auto;
-    }
-    .request-id {
-      color: #6b7280;
-      font-size: 0.75rem;
-      margin-top: 1rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>${heading}</h1>
-    <p>${message}</p>
-    ${detailsBlock}
-    ${requestIdBlock}
-  </div>
-</body>
-</html>`;
+  const detail = [opts.message, opts.details].filter(Boolean).join("\n\n");
+  return renderResultPage(
+    { ok: false, detail, requestId: opts.requestId },
+    randomBytes(16).toString("base64"),
+  );
 }
 
 /**

@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Povežite se z gostitelji z kratkoročnimi SSH certifikati OpenPubkey po prijavi s ponudnikom identitete."
+  },
+  "resultPage": {
+    "signedIn": "Prijava uspešna",
+    "failed": "Prijava ni uspela",
+    "closing": "To okno lahko zaprete in se vrnete v Termix.",
+    "tryAgain": "Zaprite to okno in poskusite znova iz Termixa.",
+    "close": "Zapri okno",
+    "requestId": "ID zahteve: {{id}}"
   }
 }

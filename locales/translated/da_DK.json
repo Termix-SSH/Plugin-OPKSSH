@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Opret forbindelse til værter med kortvarige OpenPubkey SSH-certifikater efter login med din identitetsudbyder."
+  },
+  "resultPage": {
+    "signedIn": "Logget ind",
+    "failed": "Login mislykkedes",
+    "closing": "Du kan lukke dette vindue og vende tilbage til Termix.",
+    "tryAgain": "Luk dette vindue og prøv igen fra Termix.",
+    "close": "Luk vindue",
+    "requestId": "Anmodnings-ID: {{id}}"
   }
 }

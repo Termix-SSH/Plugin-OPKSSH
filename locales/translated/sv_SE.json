@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Anslut till värdar med kortlivade OpenPubkey SSH-certifikat efter inloggning med din identitetsleverantör."
+  },
+  "resultPage": {
+    "signedIn": "Inloggad",
+    "failed": "Inloggningen misslyckades",
+    "closing": "Du kan stänga detta fönster och gå tillbaka till Termix.",
+    "tryAgain": "Stäng detta fönster och försök igen från Termix.",
+    "close": "Stäng fönstret",
+    "requestId": "Förfrågnings-ID: {{id}}"
   }
 }

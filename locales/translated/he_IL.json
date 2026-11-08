@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "התחבר למארחים באמצעות תעודות OpenPubkey SSH לזמן קצר לאחר התחברות עם ספק הזהות שלך."
+  },
+  "resultPage": {
+    "signedIn": "התחברת בהצלחה",
+    "failed": "התחברות נכשלה",
+    "closing": "אתה יכול לסגור חלון זה ולחזור ל-Termix.",
+    "tryAgain": "סגור חלון זה ונסה שוב מ-Termix.",
+    "close": "סגור חלון",
+    "requestId": "מזהה בקשה: {{id}}"
   }
 }

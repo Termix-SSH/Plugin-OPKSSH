@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Verbind met gasheërs met kortstondige OpenPubkey SSH-sertifikate nadat jy aangemeld het met jou identiteitsverskaffer."
+  },
+  "resultPage": {
+    "signedIn": "Aangemeld",
+    "failed": "Aanmelding misluk",
+    "closing": "Jy kan hierdie venster sluit en terugkeer na Termix.",
+    "tryAgain": "Sluit hierdie venster en probeer weer vanaf Termix.",
+    "close": "Sluit venster",
+    "requestId": "Aanvraag-ID: {{id}}"
   }
 }

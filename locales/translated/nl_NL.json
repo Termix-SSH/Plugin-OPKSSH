@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Verbind met hosts met kortstondige OpenPubkey SSH-certificaten na het inloggen met je identiteitsprovider."
+  },
+  "resultPage": {
+    "signedIn": "Ingelogd",
+    "failed": "Inloggen mislukt",
+    "closing": "Je kunt dit venster sluiten en terugkeren naar Termix.",
+    "tryAgain": "Sluit dit venster en probeer het opnieuw vanuit Termix.",
+    "close": "Venster sluiten",
+    "requestId": "Verzoek-ID: {{id}}"
   }
 }

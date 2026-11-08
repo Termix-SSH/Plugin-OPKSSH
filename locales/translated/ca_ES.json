@@ -28,5 +28,13 @@
   "plugin": {
     "name": "OPKSSH",
     "description": "Connecta't als amfitrions amb certificats SSH d'OpenPubkey de curta durada després d'identificar-te amb el teu proveïdor d'identitat."
+  },
+  "resultPage": {
+    "signedIn": "S'ha iniciat la sessió",
+    "failed": "Ha fallat l'inici de sessió",
+    "closing": "Podeu tancar aquesta finestra i tornar a Termix.",
+    "tryAgain": "Tanqueu aquesta finestra i torneu-ho a provar des de Termix.",
+    "close": "Tanca la finestra",
+    "requestId": "ID de sol·licitud: {{id}}"
   }
 }
