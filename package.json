@@ -31,7 +31,7 @@
     "jsdom": "^30.0.1",
     "lint-staged": "^17.2.0",
     "prettier": "3.9.9",
-    "react-i18next": "^17.0.16",
+    "react-i18next": "^18.0.1",
     "vitest": "^4.1.11"
   },
   "peerDependencies": {
