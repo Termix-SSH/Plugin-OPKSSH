@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.4
+
+### Fixed
+
+- Pins opkssh 0.19.2 instead of 0.16.0, which brings security fixes in the libraries it is built with
+
 ## 1.0.3
 
 ### Changed
