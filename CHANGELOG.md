@@ -2,6 +2,11 @@
 
 ## 1.0.4
 
+### Changed
+
+- Runs in its own process on Termix 26.11.2 and later, with no access to the server beyond what Termix allows it
+- Your Termix login cookies are no longer passed to the OPKSSH sign in page
+
 ### Fixed
 
 - Pins opkssh 0.19.2 instead of 0.16.0, which brings security fixes in the libraries it is built with

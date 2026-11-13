@@ -19,7 +19,7 @@ import type { TokenStore } from "./token-store.js";
  * The browser reaches these without a Termix session: the sign-in may finish
  * in a different browser, and the identity provider redirects to /callback.
  * Each is matched to its sign-in by the request id, the OAuth state or the
- * opkssh_request_id cookie.
+ * tmxp_opkssh_request_id cookie.
  */
 export const PUBLIC_PATHS = [
   "/chooser/:requestId",
@@ -39,7 +39,21 @@ function stripTags(html: string): string {
     .slice(0, 500);
 }
 
-const REQUEST_COOKIE = "opkssh_request_id";
+/** Termix only passes a plugin cookies whose names start with this. */
+export const COOKIE_PREFIX = "tmxp_opkssh_";
+const REQUEST_COOKIE = `${COOKIE_PREFIX}request_id`;
+
+/** OPKSSH's own cookies from the browser, with their real names back. */
+export function upstreamCookies(header: unknown): string | undefined {
+  if (typeof header !== "string") return undefined;
+  const kept = header
+    .split(";")
+    .map((part) => part.trim())
+    .filter((part) => part.startsWith(COOKIE_PREFIX) && part !== "")
+    .map((part) => part.slice(COOKIE_PREFIX.length))
+    .filter((part) => !part.startsWith("request_id="));
+  return kept.length ? kept.join("; ") : undefined;
+}
 const MAX_HOPS = 4;
 
 /** Whether a URL's hostname is this server's loopback. */
@@ -60,6 +74,21 @@ function readCookie(req: Request, name: string): string | undefined {
     if (key === name) return decodeURIComponent(rest.join("="));
   }
   return undefined;
+}
+
+/** What the local listener sees: the request without Termix's own cookies. */
+function upstreamHeaders(
+  req: Request,
+  port: number,
+): Record<string, string | string[]> {
+  const headers: Record<string, string | string[]> = {
+    ...(req.headers as Record<string, string | string[]>),
+    host: `127.0.0.1:${port}`,
+  };
+  delete headers.cookie;
+  const cookie = upstreamCookies(req.headers.cookie);
+  if (cookie) headers.cookie = cookie;
+  return headers;
 }
 
 function param(value: string | string[] | undefined): string {
@@ -409,7 +438,7 @@ export function registerRoutes(
       const response = await axios({
         method: req.method,
         url: `http://127.0.0.1:${upstreamPort}${targetPath}`,
-        headers: { ...req.headers, host: `127.0.0.1:${upstreamPort}` },
+        headers: upstreamHeaders(req, upstreamPort),
         data: req.body,
         timeout: 10000,
         validateStatus: () => true,
@@ -455,13 +484,14 @@ export function registerRoutes(
           const cookies = Array.isArray(value) ? value : [String(value)];
           res.setHeader(
             key,
-            cookies.map((cookie) =>
-              /;\s*path=/i.test(cookie)
+            cookies.map((raw) => {
+              const cookie = `${COOKIE_PREFIX}${raw.trim()}`;
+              return /;\s*path=/i.test(cookie)
                 ? cookie
                     .replace(/;\s*domain=[^;]*/gi, "")
                     .replace(/;\s*path=[^;]*/gi, `; Path=${base}/callback/`)
-                : `${cookie.replace(/;\s*domain=[^;]*/gi, "")}; Path=${base}/callback/`,
-            ),
+                : `${cookie.replace(/;\s*domain=[^;]*/gi, "")}; Path=${base}/callback/`;
+            }),
           );
         } else if (value !== undefined) {
           res.setHeader(key, value as string | string[]);
@@ -521,7 +551,7 @@ export function registerRoutes(
    * /plugin-api/opkssh/callback:
    *   get:
    *     summary: OAuth callback from the identity provider for an OPKSSH sign-in
-   *     description: Public. The redirect URI registered with the identity provider. Finds the sign-in by OAuth state or the opkssh_request_id cookie and forwards to its proxied callback listener.
+   *     description: Public. The redirect URI registered with the identity provider. Finds the sign-in by OAuth state or the tmxp_opkssh_request_id cookie and forwards to its proxied callback listener.
    *     tags: [OPKSSH]
    *     responses:
    *       302:

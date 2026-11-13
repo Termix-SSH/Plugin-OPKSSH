@@ -43,8 +43,8 @@
     }
   ],
   "engine": {
-    "termix": ">=26.10.0",
-    "api": "^1.2"
+    "termix": ">=26.11.2-0",
+    "api": "^2.0.0"
   },
   "capabilities": [
     "db:own",
@@ -55,7 +55,8 @@
     "network:outbound",
     "network:serve",
     "auth:provide",
-    "ui:surface"
+    "ui:surface",
+    "network:sockets"
   ],
   "contributes": {
     "auth": {

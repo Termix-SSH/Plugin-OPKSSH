@@ -113,6 +113,7 @@ describe("activate", () => {
     "fails closed without %s",
     async (capability) => {
       const mock = createMockCtx({
+        sandbox: true,
         pluginId: manifest.id,
         manifest,
         capabilities: manifest.capabilities.filter((c) => c !== capability),
@@ -268,7 +269,7 @@ describe("the browser sign-in", () => {
     const requestId = String(status?.requestId);
     const forwarded = await server.request("GET", "/callback?code=x&state=s", {
       user: "",
-      headers: { cookie: `opkssh_request_id=${requestId}` },
+      headers: { cookie: `tmxp_opkssh_request_id=${requestId}` },
     });
     expect(forwarded.status).toBe(302);
     expect(forwarded.location).toBe(
@@ -358,7 +359,7 @@ describe("routes", () => {
     const requestId = String(
       socket.sent.find((m) => m.type === "opkssh_status")?.requestId,
     );
-    const cookie = { cookie: `opkssh_request_id=${requestId}` };
+    const cookie = { cookie: `tmxp_opkssh_request_id=${requestId}` };
 
     // OPKSSH's callback listener is not up yet.
     expect(
