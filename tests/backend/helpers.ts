@@ -127,18 +127,6 @@ export async function startServer(
       ensureBinary: async (spec) => `/opt/${spec.name}`,
     },
   });
-  // Core hands a process's exit Promise over its own way, and the plugin
-  // process reads the base URL from the request itself. The sandbox mock in
-  // SDK 2.2.0 does not know either yet.
-  (mock.ctx.http as { baseUrl: unknown }).baseUrl = () => "https://termix.test";
-  (mock.ctx.process as { run: unknown }).run = (
-    file: string,
-    args: string[],
-    options?: Record<string, unknown>,
-  ) => {
-    mock.processRuns.push({ file, args, options: options ?? {} } as never);
-    return run();
-  };
   // The plugin's data folder, somewhere the test can write.
   (mock.ctx as unknown as { files: unknown }).files = {
     dataDir: async () => dataDir,
