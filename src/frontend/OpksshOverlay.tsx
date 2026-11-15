@@ -6,9 +6,10 @@ import { OpksshDialog, type SignInStage } from "./OpksshDialog";
 export interface TerminalOverlayProps {
   host: { id: number | string; [key: string]: unknown } | undefined;
   backgroundColor?: string;
+  // In a frame this call crosses to the shell, so it answers with a Promise.
   subscribe: (
     listener: (message: { type: string; [key: string]: unknown }) => void,
-  ) => () => void;
+  ) => (() => void) | Promise<() => void>;
   holdConnectTimeout: (held: boolean) => void;
   fail: (message: string) => void;
   disconnect: () => void;
@@ -76,7 +77,7 @@ export function OpksshOverlay({
       );
     };
 
-    const unsubscribe = subscribe((message) => {
+    const subscribed = subscribe((message) => {
       switch (message.type) {
         case "opkssh_auth_required":
           hold(true);
@@ -148,7 +149,11 @@ export function OpksshOverlay({
     });
 
     return () => {
-      unsubscribe();
+      void Promise.resolve(subscribed)
+        .then((unsubscribe) => {
+          if (typeof unsubscribe === "function") unsubscribe();
+        })
+        .catch(() => {});
       clearTimer();
       if (heldRef.current) {
         heldRef.current = false;

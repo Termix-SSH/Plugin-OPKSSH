@@ -71,6 +71,24 @@ describe("OpksshOverlay", () => {
     return { props, emit };
   }
 
+  it("unsubscribes when subscribe answers with a Promise, as it does in a frame", async () => {
+    const unsubscribe = vi.fn();
+    const { unmount } = render(
+      <OpksshOverlay
+        host={{ id: 7 }}
+        subscribe={vi.fn(async () => unsubscribe)}
+        holdConnectTimeout={vi.fn()}
+        fail={vi.fn()}
+        disconnect={vi.fn()}
+        send={vi.fn()}
+        connectPayload={vi.fn(() => ({}))}
+      />,
+    );
+    expect(() => unmount()).not.toThrow();
+    await act(async () => {});
+    expect(unsubscribe).toHaveBeenCalledTimes(1);
+  });
+
   it("starts the sign-in once, then reports a second request as a failure", () => {
     const { props, emit } = setup();
     emit({ type: "opkssh_auth_required", hostId: 7 });
