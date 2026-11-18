@@ -25,9 +25,8 @@ export type ConfigCheck =
   | { ok: true; configPath: string; providers: ProviderInfo[] }
   | { ok: false; configPath: string; error: string };
 
-function dockerHint(): string {
-  const dataDir = process.env.DATA_DIR;
-  return dataDir && dataDir.startsWith("/app")
+function dockerHint(configPath: string): string {
+  return configPath.startsWith("/app")
     ? "\n\nDocker: Ensure /app/data is mounted as a volume with write permissions for node:node user."
     : "";
 }
@@ -73,7 +72,7 @@ export async function checkConfig(configPath: string): Promise<ConfigCheck> {
     return {
       ok: false,
       configPath,
-      error: `OPKSSH configuration not found. A template config file has been created at:\n${configPath}\n\nPlease edit this file and configure your OIDC provider (Google, GitHub, Microsoft, etc.).\nSee documentation: ${OPKSSH_DOCS_URL}${dockerHint()}`,
+      error: `OPKSSH configuration not found. A template config file has been created at:\n${configPath}\n\nPlease edit this file and configure your OIDC provider (Google, GitHub, Microsoft, etc.).\nSee documentation: ${OPKSSH_DOCS_URL}${dockerHint(configPath)}`,
     };
   }
 
@@ -93,7 +92,7 @@ export async function checkConfig(configPath: string): Promise<ConfigCheck> {
     return {
       ok: false,
       configPath,
-      error: `OPKSSH configuration has no active providers. Please edit the config file at:\n${configPath}\n\nUncomment and configure at least one OIDC provider.\nSee documentation: ${OPKSSH_DOCS_URL}${dockerHint()}`,
+      error: `OPKSSH configuration has no active providers. Please edit the config file at:\n${configPath}\n\nUncomment and configure at least one OIDC provider.\nSee documentation: ${OPKSSH_DOCS_URL}${dockerHint(configPath)}`,
     };
   }
 

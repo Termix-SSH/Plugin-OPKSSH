@@ -1,4 +1,6 @@
 import fs from "node:fs/promises";
+import http from "node:http";
+import type { AddressInfo } from "node:net";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { PluginCapabilityError } from "@termix-ssh/plugin-sdk/backend";
@@ -113,6 +115,7 @@ describe("activate", () => {
     "fails closed without %s",
     async (capability) => {
       const mock = createMockCtx({
+        sandbox: true,
         pluginId: manifest.id,
         manifest,
         capabilities: manifest.capabilities.filter((c) => c !== capability),
@@ -268,12 +271,47 @@ describe("the browser sign-in", () => {
     const requestId = String(status?.requestId);
     const forwarded = await server.request("GET", "/callback?code=x&state=s", {
       user: "",
-      headers: { cookie: `opkssh_request_id=${requestId}` },
+      headers: { cookie: `tmxp_opkssh_request_id=${requestId}` },
     });
     expect(forwarded.status).toBe(302);
     expect(forwarded.location).toBe(
       `/plugin-api/opkssh/callback/${requestId}?code=x&state=s`,
     );
+  });
+
+  it("hands the callback listener its state cookie under the real name", async () => {
+    const seen: (string | undefined)[] = [];
+    const listener = http.createServer((req, res) => {
+      seen.push(req.headers.cookie);
+      res.end("ok");
+    });
+    await new Promise<void>((resolve) =>
+      listener.listen(0, "127.0.0.1", resolve),
+    );
+    const { port } = listener.address() as AddressInfo;
+    try {
+      server = await startServer();
+      await writeConfig(PROVIDERS_CONFIG);
+      const socket = await startSignIn();
+      server.processes[0].emitStdout(
+        `Open your browser to: http://localhost:${port}/login\n`,
+      );
+      const requestId = String(
+        socket.sent.find((m) => m.type === "opkssh_status")?.requestId,
+      );
+      const response = await server.request(
+        "GET",
+        `/callback/${requestId}?code=x&state=s`,
+        {
+          user: "",
+          headers: { cookie: "tmxp_opkssh_state=abc; tmxp_opkssh_pkce=p" },
+        },
+      );
+      expect(response.status).toBe(200);
+      expect(seen).toEqual(["state=abc; pkce=p"]);
+    } finally {
+      listener.close();
+    }
   });
 
   it("writes a template and reports a missing config", async () => {
@@ -358,7 +396,7 @@ describe("routes", () => {
     const requestId = String(
       socket.sent.find((m) => m.type === "opkssh_status")?.requestId,
     );
-    const cookie = { cookie: `opkssh_request_id=${requestId}` };
+    const cookie = { cookie: `tmxp_opkssh_request_id=${requestId}` };
 
     // OPKSSH's callback listener is not up yet.
     expect(

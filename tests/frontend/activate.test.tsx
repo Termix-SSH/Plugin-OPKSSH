@@ -71,6 +71,24 @@ describe("OpksshOverlay", () => {
     return { props, emit };
   }
 
+  it("unsubscribes when subscribe answers with a Promise, as it does in a frame", async () => {
+    const unsubscribe = vi.fn();
+    const { unmount } = render(
+      <OpksshOverlay
+        host={{ id: 7 }}
+        subscribe={vi.fn(async () => unsubscribe)}
+        holdConnectTimeout={vi.fn()}
+        fail={vi.fn()}
+        disconnect={vi.fn()}
+        send={vi.fn()}
+        connectPayload={vi.fn(() => ({}))}
+      />,
+    );
+    expect(() => unmount()).not.toThrow();
+    await act(async () => {});
+    expect(unsubscribe).toHaveBeenCalledTimes(1);
+  });
+
   it("starts the sign-in once, then reports a second request as a failure", () => {
     const { props, emit } = setup();
     emit({ type: "opkssh_auth_required", hostId: 7 });
@@ -81,7 +99,29 @@ describe("OpksshOverlay", () => {
     expect(props.fail).toHaveBeenCalledWith("errors.authFailed");
   });
 
-  it("shows the chooser, cancels it, and reconnects once signed in", () => {
+  it("waits for the reconnect details when they come from another frame", async () => {
+    const { props, emit } = setup();
+    props.connectPayload.mockReturnValue(
+      Promise.resolve({ hostId: 7, hostConfig: { username: "me" } }) as never,
+    );
+    emit({ type: "opkssh_completed", hostId: 7, requestId: "req-9" });
+    await vi.waitFor(() =>
+      expect(props.send).toHaveBeenCalledWith("opkssh_auth_completed", {
+        hostId: 7,
+        hostConfig: { username: "me" },
+      }),
+    );
+  });
+
+  it("skips a message the terminal replays after a resubscribe", () => {
+    const { props, emit } = setup();
+    emit({ type: "opkssh_auth_required", hostId: 7, seq: 1 });
+    emit({ type: "opkssh_auth_required", hostId: 7, seq: 1 });
+    expect(props.send).toHaveBeenCalledTimes(1);
+    expect(props.fail).not.toHaveBeenCalled();
+  });
+
+  it("shows the chooser, cancels it, and reconnects once signed in", async () => {
     const { props, emit } = setup();
     emit({ type: "opkssh_auth_required", hostId: 7 });
     emit({
@@ -94,11 +134,13 @@ describe("OpksshOverlay", () => {
     expect(screen.getByText("dialog.title")).toBeTruthy();
 
     emit({ type: "opkssh_completed", requestId: "req-1" });
-    expect(props.send).toHaveBeenCalledWith("opkssh_auth_completed", {
-      hostId: 7,
-      cols: 80,
-      rows: 24,
-    });
+    await vi.waitFor(() =>
+      expect(props.send).toHaveBeenCalledWith("opkssh_auth_completed", {
+        hostId: 7,
+        cols: 80,
+        rows: 24,
+      }),
+    );
     expect(screen.queryByText("dialog.title")).toBeNull();
 
     emit({

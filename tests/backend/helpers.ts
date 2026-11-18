@@ -97,8 +97,14 @@ export async function startServer(
   const dataDir = await fs.mkdtemp(path.join(os.tmpdir(), "opkssh-"));
   const processes: FakeProcess[] = [];
 
+  const run = () => {
+    const child = createFakeProcess();
+    processes.push(child);
+    return child;
+  };
   let router: Router | null = null;
   const mock = createMockCtx({
+    sandbox: true,
     pluginId: manifest.id,
     manifest,
     capabilities: options.capabilities ?? manifest.capabilities,
@@ -117,11 +123,7 @@ export async function startServer(
     settings: options.settings,
     baseUrl: "https://termix.test",
     process: {
-      run: () => {
-        const child = createFakeProcess();
-        processes.push(child);
-        return child;
-      },
+      run,
       ensureBinary: async (spec) => `/opt/${spec.name}`,
     },
   });
